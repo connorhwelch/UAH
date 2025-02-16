@@ -36,7 +36,18 @@ wt = np.round(w_obs * theta_obs, 3)
 wptp = np.round(vert_motion.perturbations * potential_temp.perturbations, 3)
 
 print(*(f"{wp[x]} & {tp[x]} & {wp2[x]} & {tp2[x]} & {wt[x]} & {wptp[x]}" for x in range(0,len(w_prime))), sep="\n")
+print((f"avgs {vert_motion.mean} & {potential_temp.mean} & {np.average(wp).round(3)} & {np.average(tp).round(3)} & {np.average(wp2).round(3)} & "
+       f"{np.average(tp2).round(3)} & {np.average(wt).round(3)} & {np.average(wptp).round(3)}")
+)
 wpm = vert_motion.mean
 tpm = potential_temp.mean
 print(f'{np.mean(wt)} = {np.round((wpm*tpm),3)} + {np.mean(wptp).round(3)}')
+
+# TAKE THIS STUFF AND MAKE INTO FUNCTIONS OR SOMETHING USEFUL FOR LESS CLUTTER
+
+# Prob 3
+print(vert_motion.biased_std,'\n', potential_temp.biased_std)
+
+corr_w_theta = np.corrcoef(w_obs, theta_obs)
+print(corr_w_theta[0,1])
 
